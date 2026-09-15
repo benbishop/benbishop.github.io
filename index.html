@@ -1,0 +1,822 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Product and design leader who still builds. Case studies: Talkthrough, seven years of design-to-code tooling, learner analytics, NOV Remote, browser-local PII redaction.">
+<title>Benjamin Bishop</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --paper:#f6f7f9; --surface:#ffffff; --sunk:#eef1f4;
+  --ink:#12161b; --ink-2:#3a424c; --ink-3:#6b7480;
+  --rule:#dde2e8; --rule-2:#eaeef2;
+  --accent:#a65f0c; --accent-bright:#d98416; --accent-soft:#fbf1e2;
+  --f-disp:"Archivo",ui-sans-serif,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  --f-body:"Source Serif 4",ui-serif,Georgia,"Times New Roman",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --rail:9.5rem; --gap:2.5rem; --measure:34rem;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0d1013; --surface:#14181d; --sunk:#171c21;
+    --ink:#e9edf1; --ink-2:#aeb7c1; --ink-3:#7c848e;
+    --rule:#242a31; --rule-2:#1c2127;
+    --accent:#f0a640; --accent-bright:#f5b65e; --accent-soft:#1f1810;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0d1013; --surface:#14181d; --sunk:#171c21;
+  --ink:#e9edf1; --ink-2:#aeb7c1; --ink-3:#7c848e;
+  --rule:#242a31; --rule-2:#1c2127;
+  --accent:#f0a640; --accent-bright:#f5b65e; --accent-soft:#1f1810;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--f-body); font-size:18px; line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+.page{max-width:64rem;margin:0 auto;padding-inline:1.25rem}
+
+a{color:inherit;text-decoration:none;border-bottom:1px solid var(--rule);transition:border-color .15s,color .15s}
+a:hover{border-color:var(--accent);color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+
+/* ---- the annotation rail: mono labels in the margin, like the sticky notes on his own working file ---- */
+.row{display:grid;grid-template-columns:1fr;gap:.5rem var(--gap);align-items:start}
+.tag{
+  font-family:var(--f-mono);font-size:.7rem;font-weight:500;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--ink-3);padding-top:.45rem;
+}
+.tag .num{color:var(--accent);font-weight:600}
+.body{min-width:0;max-width:var(--measure)}
+.body.wide{max-width:none}
+@media(min-width:56rem){
+  .row{grid-template-columns:var(--rail) 1fr}
+  .tag{text-align:right;border-right:1px solid var(--rule);padding-right:var(--gap);padding-top:.6rem;margin-right:calc(var(--gap) * -1)}
+}
+
+/* ---- header ---- */
+header{padding-block:4.5rem 3rem}
+h1{
+  font-family:var(--f-disp);font-weight:700;font-size:clamp(2.1rem,5.5vw,3.1rem);
+  line-height:1.04;letter-spacing:-.025em;margin:0 0 1rem;text-wrap:balance;
+}
+.standfirst{
+  font-size:clamp(1.1rem,2.3vw,1.3rem);line-height:1.5;color:var(--ink-2);
+  margin:0 0 2rem;max-width:36rem;text-wrap:balance;
+}
+.standfirst b{color:var(--ink);font-weight:600}
+.meta{
+  display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;
+  font-family:var(--f-mono);font-size:.74rem;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-3);
+}
+.meta a{border-bottom-color:var(--rule)}
+
+hr{height:1px;background:var(--rule);border:0;margin:0}
+
+section{padding-block:2.75rem}
+h2{
+  font-family:var(--f-disp);font-weight:700;font-size:clamp(1.7rem,3.6vw,2.3rem);
+  line-height:1.1;letter-spacing:-.02em;margin:0 0 .6rem;text-wrap:balance;
+}
+h3{
+  font-family:var(--f-disp);font-weight:600;font-size:1.05rem;letter-spacing:-.005em;
+  margin:0 0 .5rem;color:var(--ink);
+}
+p{margin:0 0 1.1rem;color:var(--ink-2)}
+p:last-child{margin-bottom:0}
+.lead{font-size:1.18rem;color:var(--ink);max-width:33rem;margin-bottom:0}
+strong{color:var(--ink);font-weight:600}
+
+/* ---- the pull quote: the one place boldness is spent ---- */
+.pull{
+  font-family:var(--f-disp);font-weight:600;
+  font-size:clamp(1.25rem,2.8vw,1.6rem);line-height:1.32;letter-spacing:-.015em;
+  color:var(--ink);margin:0;text-wrap:balance;
+  border-left:3px solid var(--accent);padding-left:1.2rem;
+}
+
+/* ---- figures ---- */
+figure{margin:0}
+figure img{
+  width:100%;height:auto;display:block;background:var(--surface);
+  border:1px solid var(--rule);border-radius:3px;
+}
+figcaption{
+  font-family:var(--f-mono);font-size:.76rem;line-height:1.6;letter-spacing:.01em;
+  color:var(--ink-3);margin-top:.75rem;max-width:36rem;
+}
+
+/* ---- tables: the problem ledger, and the action inspector ---- */
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:30rem;font-family:var(--f-disp);font-size:.9rem}
+caption{text-align:left;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.11em;
+        text-transform:uppercase;color:var(--ink-3);padding-bottom:.6rem}
+th{
+  font-family:var(--f-mono);font-weight:500;font-size:.68rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-3);text-align:left;
+  padding:0 1rem .55rem 0;border-bottom:1px solid var(--rule);
+}
+td{padding:.7rem 1rem .7rem 0;border-bottom:1px solid var(--rule-2);color:var(--ink-2);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td:first-child{color:var(--ink);font-weight:500;white-space:nowrap}
+td.props{font-family:var(--f-mono);font-size:.76rem;color:var(--ink-3);white-space:normal}
+.swatch{
+  display:inline-block;width:.62rem;height:.62rem;border-radius:2px;
+  background:var(--accent-bright);vertical-align:baseline;margin-right:.3rem;
+}
+
+/* ---- also: four short entries, separated by rules, not stamped into cards ---- */
+.also{display:grid;gap:0}
+.also article{padding-block:1.4rem;border-top:1px solid var(--rule-2)}
+.also article:first-child{border-top:0;padding-top:0}
+.also h3{margin-bottom:.25rem}
+.also p{font-size:.95rem;color:var(--ink-2);margin:0;max-width:40rem}
+
+footer{padding-block:3rem 4.5rem}
+footer p{font-family:var(--f-mono);font-size:.8rem;letter-spacing:.02em;color:var(--ink-3);margin:0}
+
+
+/* contents */
+.contents{display:grid;gap:0;margin:0}
+.contents a{
+  display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:baseline;
+  padding:.72rem 0;border-bottom:1px solid var(--rule-2);border-top:0;
+  font-family:var(--f-disp);font-weight:600;font-size:1.02rem;color:var(--ink);
+}
+.contents a:first-child{padding-top:0}
+.contents a:last-child{border-bottom:0}
+.contents a:hover{color:var(--accent)}
+.contents .yr{font-family:var(--f-mono);font-weight:400;font-size:.74rem;
+  letter-spacing:.08em;color:var(--ink-3)}
+.contents a:hover .yr{color:var(--accent)}
+
+/* three phone screens side by side */
+.screens{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;align-items:start}
+.screens img{width:100%;height:auto;display:block;background:var(--surface);border:1px solid var(--rule);border-radius:9px}
+@media(max-width:44rem){.screens{grid-template-columns:1fr;max-width:17rem;gap:1.5rem}}
+
+/* diagram */
+.diagram{width:100%;max-width:46rem;height:auto;display:block;margin:0 auto}
+.diagram text{font-family:var(--f-mono);fill:currentColor}
+.dlabel{font-size:12px}
+.dsmall{font-size:11px;opacity:.62}
+.dcap{font-size:10.5px;letter-spacing:.1em}
+.dbox{fill:var(--surface);stroke:currentColor;stroke-width:1;opacity:1}
+.dedge{stroke:currentColor;stroke-width:1.25;fill:none;opacity:.55}
+.dbound{fill:none;stroke:currentColor;stroke-width:1;stroke-dasharray:4 4;opacity:.42}
+
+/* generation ledger: the removed column is the point */
+td.removed{color:var(--ink);font-weight:500}
+td.removed::before{content:"";display:inline-block;width:.5rem;height:.5rem;border-radius:50%;
+  background:var(--accent);margin-right:.5rem;vertical-align:middle}
+td.still{color:var(--ink-3)}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+</head>
+<body>
+<div class="page">
+
+<header>
+  <div class="row">
+    <p class="tag">Product &amp;<br>design engineering</p>
+    <div class="body wide">
+      <h1>Benjamin Bishop</h1>
+      <p class="standfirst">Product and design leader who <b>still builds</b>. Ten years taking
+        an enterprise training platform from MVP to Verizon, ExxonMobil and Unisys, designing
+        the interface and writing the engine underneath it.</p>
+      <div class="meta">
+        <span>McKinney, Texas</span>
+        <span><a href="https://www.linkedin.com/in/benjaminjbishop/">LinkedIn</a></span>
+        <span><a href="mailto:benbishop80@gmail.com">benbishop80@gmail.com</a></span>
+        <span>US Patent 11,568,506</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<hr>
+
+<section style="padding-block:2.25rem">
+  <div class="row">
+    <p class="tag">Selected work</p>
+    <div class="body wide">
+      <nav class="contents">
+        <a href="#talkthrough"><span>Talkthrough</span><span class="yr">2026 &middot; lesson mode</span></a>
+        <a href="#arc"><span>Design to code, three generations</span><span class="yr">2019 to 2026 &middot; tooling</span></a>
+        <a href="#heatmaps"><span>Click Catcher to heatmaps</span><span class="yr">2023 to 2025 &middot; analytics</span></a>
+        <a href="#nov"><span>NOV Remote</span><span class="yr">2020 to 2021 &middot; field hardware</span></a>
+        <a href="#review"><span>Data Review Tool</span><span class="yr">2025 &middot; privacy architecture</span></a>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<section id="talkthrough">
+  <div class="row">
+    <p class="tag">Case study<br>2026</p>
+    <div class="body wide">
+      <h2>Talkthrough</h2>
+      <p class="lead">A lesson mode that gave learners a narrated, video style experience
+        without anyone producing a video.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="row">
+    <p class="tag"><span class="num">01</span><br>The observation</p>
+    <div class="body">
+      <p>Skyllful customers train frontline workers on enterprise software, and many of them
+        wanted an overview video to introduce a workflow before teaching it step by step.</p>
+      <p>Video is a reasonable instinct and a poor fit for this audience. Producing it takes
+        time and skills most training teams do not have. The files are heavy, which matters
+        when your learner is a delivery driver in a parking lot with two bars of signal. And
+        when the software changes, when a button moves or a step is added or a customer name
+        has to come out, you are reopening a video project you may not have organized well the
+        first time.</p>
+      <p>So customers found their own way around it. They were exporting the assets we already
+        generated, the voice over audio and the step screenshots, and assembling videos in
+        Premiere or Camtasia themselves.</p>
+      <p>This was not hidden behavior. <strong>Our own documentation told them to do it.</strong>
+        The Video authoring flow ended by instructing authors to download every screenshot and
+        every audio file, then assemble the video in a tool of their choice.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-block:1.25rem 2.75rem">
+  <div class="row">
+    <p class="tag"><span class="num">02</span><br>The insight</p>
+    <div class="body">
+      <p class="pull">If customers are building a workaround out of your own outputs, the
+        workaround is the product.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="row">
+    <p class="tag"><span class="num">03</span><br>What I designed</p>
+    <div class="body">
+      <p>We already had everything the video needed: narration audio, step screenshots, and
+        the step sequence. The only missing piece was playback.</p>
+      <p>Talkthrough assembles those existing assets into a narrated experience generated
+        directly from the lesson. Press play, hear the narration, watch the workflow advance.
+        No video editor, no export, no second artifact to keep in sync.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="row">
+    <p class="tag">What it solved</p>
+    <div class="body wide">
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Problem</th><th>How Talkthrough addresses it</th></tr></thead>
+          <tbody>
+            <tr><td>Production cost</td><td>Generated from the lesson. No video tooling or video skills required.</td></tr>
+            <tr><td>File weight</td><td>Narration and screenshots instead of streamed HD video, on field connections.</td></tr>
+            <tr><td>Maintenance</td><td>Step 7 changed? Update step 7. Not a video re-edit.</td></tr>
+            <tr><td>Localization</td><td>Five languages was five video projects. Now it is one lesson, narrated per language.</td></tr>
+            <tr><td>Linear access</td><td>Learners jump straight to the step they need, mid job.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="row">
+    <p class="tag"><span class="num">04</span><br>The authoring model</p>
+    <div class="body">
+      <p>The design problem underneath was finding the smallest set of primitives that could
+        express a narrated walkthrough. I settled on five actions an author composes per step,
+        each carrying its own properties.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="row">
+    <p class="tag">Action inspector</p>
+    <div class="body wide">
+      <div class="scroll">
+        <table>
+          <caption>The five primitives, and what an author sets on each</caption>
+          <thead><tr><th>Action</th><th>What it does</th><th>Properties</th></tr></thead>
+          <tbody>
+            <tr><td>Narration</td><td>Speaks a script over the step</td><td class="props">voice, captions</td></tr>
+            <tr><td>Tap</td><td>Highlights and presses a control</td><td class="props">position, duration, highlight style, <span class="swatch"></span>color</td></tr>
+            <tr><td>Input</td><td>Types into a field</td><td class="props">input, text, highlight style, duration, <span class="swatch"></span>color</td></tr>
+            <tr><td>Scroll</td><td>Moves the viewport</td><td class="props">position, duration</td></tr>
+            <tr><td>Delay</td><td>Holds before the next action</td><td class="props">duration</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:.25rem">
+  <div class="row">
+    <p class="tag"></p>
+    <div class="body">
+      <p>Enough to describe almost any workflow, and few enough that an author can hold the
+        whole model in their head. I put the authoring UI inside the existing Lesson Builder
+        rather than in a separate tool, so the lesson stays the single source and the modes
+        stay siblings.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="row">
+    <p class="tag"><span class="num">05</span><br>How I worked</p>
+    <div class="body">
+      <p>I designed the interface and wrote the specification in the same artifact.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="row">
+    <p class="tag">Figure 1</p>
+    <div class="body wide">
+      <figure>
+        <img src="public/work/talkthrough-workflow-web.jpg" alt="Working file showing the proposed Lesson Builder interface laid out in place and annotated with numbered user stories and open questions on sticky notes">
+        <figcaption>The working file. The proposed Lesson Builder UI laid out in place,
+          annotated with numbered user stories and open questions. Notes like "do we want
+          Highlight Area, Wait for User Input, Concurrency, Lightbox effects?" stayed visible
+          as questions rather than being resolved prematurely.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:2rem">
+  <div class="row">
+    <p class="tag">Figure 2</p>
+    <div class="body wide">
+      <figure>
+        <img src="public/work/talkthrough-prototype-web.jpg" alt="Prototype of the Talkthrough authoring experience showing a step list, a device preview, the actions menu and the property panels for each action type">
+        <figcaption>A working prototype of the authoring experience. Step list, device preview
+          with width, height and scale controls, the actions menu, and the property panel for
+          each action type, so the interaction model could be tested before it was built for
+          real. Record data in the preview is obscured.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:1rem">
+  <div class="row">
+    <p class="tag"><span class="num">06</span><br>Outcome</p>
+    <div class="body">
+      <p>Talkthrough shipped in July 2026 as a new lesson mode across Skyllful Studio and the
+        mobile Simulator, documented in the platform's public release notes.</p>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<section id="arc">
+  <div class="row">
+    <p class="tag">Case study<br>2019 to 2026</p>
+    <div class="body wide">
+      <h2>Design to code, three generations</h2>
+      <p class="lead">Seven years removing the same bottleneck, including the tool I built to
+        remove it the first time.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="row">
+    <p class="tag">The bottleneck</p>
+    <div class="body">
+      <p>Skyllful's training simulations need pixel accurate replicas of enterprise app
+        screens, because a field worker practicing on an approximation learns the
+        approximation. Producing those replicas by hand was the constraint on everything.
+        Someone designs a screen, then someone else rebuilds it in markup.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="row">
+    <p class="tag">2019<br>Generation one</p>
+    <div class="body">
+      <p>I built an Adobe XD plugin that exported artboards straight to production HTML. The
+        interesting part was not the export. It was a C# object model of Adobe's scenegraph,
+        faithful enough to carry gradients, boolean shape operations, repeat grids and symbol
+        instances, and a rendering engine on the other side that emitted HTML, CSS, SVG and
+        CSS keyframe animations, so exported screens animated rather than sat still.</p>
+      <p>The piece I am still fond of is a panel inside XD itself. Adobe XD had no concept of
+        responsive anchoring that survived into code, so I added one, in the designer's own
+        tool and the designer's own vocabulary. Check left, right, top, bottom on an element;
+        the intent is stored back into the XD document as per element plugin data, travels
+        with the file, and drives the CSS the service generates.</p>
+      <p><strong>Days became hours.</strong></p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="row">
+    <p class="tag">Why it died</p>
+    <div class="body">
+      <p>Two structural problems, neither of them technical. Customers had to buy and provision
+        Adobe XD seats, which put a procurement conversation between a customer and their first
+        lesson. And they had to rebuild production screens inside XD, duplicating work that
+        reality had already done, because the real app was right there on the device.</p>
+      <p>Adobe abandoned XD later, which would have killed the tool anyway. We had already
+        moved, for the adoption reasons, not the vendor one.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="row">
+    <p class="tag">2021<br>Generation two</p>
+    <div class="body">
+      <p>I prototyped a tool that takes a screenshot of the real application and reconstructs
+        it as an editable replica. No design tool to license, and no screen to rebuild, because
+        the input is something the customer already has and already sends us.</p>
+      <p>OCR gives you text and bounding boxes. Turning that into <em>a button</em> is the
+        actual work: reasoning about the geometry around the text, what encloses it, what
+        aligns with it, what the surrounding pixels look like.</p>
+      <p>The output stage was the previous generation's rendering engine, kept as a library.
+        Two different ingestion paths, one renderer. Killing a product without throwing away
+        the part of it that still worked.</p>
+      <p><strong>Hours became minutes.</strong> Prototype in 2021, production in 2022.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="row">
+    <p class="tag">2026<br>Generation three</p>
+    <div class="body">
+      <p>The remaining prerequisite was that a human still had to capture and edit. So the
+        third generation takes a video of someone doing the work and produces a finished
+        lesson: transcription, frame extraction, vision based detection of the controls on
+        screen, and a human review step where it matters.</p>
+      <p>The architectural bet was reconfigurability. The pipeline is a node graph defined as
+        data rather than logic compiled into the app, so changing how lessons get built is an
+        edit to a definition rather than a rewrite. I wrote the requirements document around
+        that single hypothesis and cut self-service visual authoring out of scope to test it
+        cleanly, which was the largest cut from earlier drafts and the right one.</p>
+      <p>I built it alone, directing coding agents, and handed the prototype to the
+        engineering team, who took it into production development.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="row">
+    <p class="tag">The ledger</p>
+    <div class="body wide">
+      <div class="scroll">
+        <table>
+          <caption>Each generation removed the prerequisite the last one still demanded</caption>
+          <thead><tr><th>Generation</th><th>Input</th><th>Prerequisite removed</th><th>Still demanded</th></tr></thead>
+          <tbody>
+            <tr><td>2019</td><td>Screen rebuilt in Adobe XD</td><td class="removed">Hand coding screens</td><td class="still">An XD license, rebuilding the screen</td></tr>
+            <tr><td>2021 to 2022</td><td>Screenshot of the real app</td><td class="removed">XD, and screen rebuilding</td><td class="still">Manual capture and editing</td></tr>
+            <tr><td>2026</td><td>Video of the real workflow</td><td class="removed">Manual capture and editing</td><td class="still">Nothing yet</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<section id="heatmaps">
+  <div class="row">
+    <p class="tag">Case study<br>2023 to 2025</p>
+    <div class="body wide">
+      <h2>Click Catcher to heatmaps</h2>
+      <p class="lead">An authoring shortcut in 2023 quietly created the data an analytics
+        feature needed in 2025.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="row">
+    <p class="tag">The shortcut</p>
+    <div class="body">
+      <p>Authors building a practice screen had to define the interactive controls on it. In
+        December 2023 I designed Click Catcher, which inverts that: draw only the control that
+        is correct for this step, and every tap landing anywhere else records as incorrect.
+        One region instead of many. It shipped as an authoring simplification, which is what
+        it was.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="row">
+    <p class="tag">The by-product</p>
+    <div class="body">
+      <p>To record a tap as incorrect, the system has to record where it landed. So from that
+        release onward the platform accumulated tap coordinates for every wrong answer, on
+        every step, from every learner. Nobody scoped that as a data collection feature. It
+        fell out of a decision made for a different reason.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="row">
+    <p class="tag">What it became</p>
+    <div class="body">
+      <p>Two years later I designed the Lessons Dashboard and step heatmaps on top of it. A
+        grid of lessons against steps, colored by failure rate. Click a red cell and you get
+        the screen replica the learner saw, the instruction they were given, a green outline
+        around the control that was correct, and dots showing where people actually tapped.</p>
+      <p>When the dots cluster somewhere that is not the green outline, you are not looking at
+        learners who failed. You are looking at an instruction that pointed at the wrong
+        thing.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-block:.75rem 2.75rem">
+  <div class="row">
+    <p class="tag">The point</p>
+    <div class="body">
+      <p class="pull">Most training analytics tell you a learner failed. This tells you which
+        sentence to rewrite.</p>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<section id="nov">
+  <div class="row">
+    <p class="tag">Case study<br>2020 to 2021</p>
+    <div class="body wide">
+      <h2>NOV Remote</h2>
+      <p class="lead">A phone replacing a physical remote control for industrial drilling
+        equipment. I designed it and wrote all of it.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="row">
+    <p class="tag">Screens</p>
+    <div class="body wide">
+      <div class="screens">
+        <img src="public/work/nov-remote-commands.jpg" alt="NOV Remote command list screen, dark background with recently used commands as large tiles and a searchable list of SMC keys, connection state and signal strength in the red header">
+        <img src="public/work/nov-remote-advanced-mode.jpg" alt="NOV Remote Advanced Mode screen showing a large device number, a verification code field, and instructions to contact NOV Australia Service to enable Advanced Mode">
+        <img src="public/work/nov-remote-readout.jpg" alt="NOV Remote expanded display showing 012 seconds to restart and maximum motor volts 030V in very large numerals">
+      </div>
+      <figcaption>Command list, the Advanced Mode verification gate, and the expanded readout.
+        Connection state and signal strength stay in the header on every screen.</figcaption>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:2rem">
+  <div class="row">
+    <p class="tag">Designed for<br>the environment</p>
+    <div class="body">
+      <p>The app pairs over Bluetooth with an equipment controller, sends it operating codes,
+        and shows live status back: motor voltage limits, restart countdowns, connection state.</p>
+      <p>Every visual decision here comes from where it gets used rather than from taste. Dark
+        ground with white text, readable in direct sun and not destructive to night vision on
+        a rig after dark. Numerals large enough to read at arm's length while your attention is
+        mostly somewhere else. Values zero padded, so <span style="font-family:var(--f-mono);font-size:.9em">012s</span>
+        and <span style="font-family:var(--f-mono);font-size:.9em">030V</span> hold their width
+        instead of shifting as they change. Portrait locked, deliberately, because the other
+        hand is doing something.</p>
+      <p>Connection state and signal strength sit in the header on every screen, because with
+        Bluetooth the first question is always whether you are connected to the right thing.</p>
+      <p>The detail that gives away real field work is the flashlight in the footer. The app
+        assumes it will be used in the dark, so rather than sending you out to the operating
+        system for a torch, it puts one a tap away from the controls.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="row">
+    <p class="tag">A safety boundary<br>in the interface</p>
+    <div class="body">
+      <p>Some commands can damage equipment or endanger people, so those are gated. The device
+        displays a number, the operator calls NOV Australia Service and quotes it, and enters
+        the code they are given back.</p>
+      <p>A shared password would have been easier and worse. A challenge and response makes
+        authorization per device, revocable in practice, and puts a human at NOV in the loop
+        at the moment it matters.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="row">
+    <p class="tag">Underneath</p>
+    <div class="body">
+      <p>Cross platform for iOS and Android, MVVM, Bluetooth Low Energy. The hard parts of BLE
+        on mobile are not the protocol, they are the platform edge cases: runtime permissions,
+        devices that do not support BLE at all, and releasing the connection when the app goes
+        to the background, because a phone quietly holding a controller in someone's pocket
+        locks everyone else out of it.</p>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<section id="review">
+  <div class="row">
+    <p class="tag">Case study<br>2025</p>
+    <div class="body wide">
+      <h2>Data Review Tool</h2>
+      <p class="lead">Customers whose own data policies stopped them using the product at all.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="row">
+    <p class="tag">The blocker</p>
+    <div class="body">
+      <p>The screenshot workflow has an awkward property: the input is a picture of the
+        customer's real software, and real software is full of real records. Patient names,
+        student records, account numbers, whatever that customer's business is made of.</p>
+      <p>For customers operating under HIPAA, GDPR or FERPA, sending those images to a
+        vendor's server was not a preference they could be talked out of. It was policy. Some
+        of them could not adopt the feature at all.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="row">
+    <p class="tag">The move</p>
+    <div class="body">
+      <p>Redaction moves to before the upload rather than after it. Screenshots are held in
+        browser memory, text recognition runs locally, and pattern based rules, custom
+        expressions and CSV driven rule sets mark what has to go. Nothing reaches our servers
+        until a person has looked at each image and approved it.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="row">
+    <p class="tag">Figure 3</p>
+    <div class="body wide">
+      <figure>
+        <svg class="diagram" viewBox="0 0 792 348" role="img"
+             aria-label="Diagram showing that a raw screenshot never crosses from the designer's browser to the servers: text recognition, redaction and approval all happen inside the browser, and only the approved image crosses.">
+          <defs>
+            <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/>
+            </marker>
+            <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent)"/>
+            </marker>
+          </defs>
+
+          <!-- the path that does not exist -->
+          <path d="M 68 150 C 68 48, 728 48, 728 150" fill="none"
+                stroke="var(--accent)" stroke-width="1.25" stroke-dasharray="5 5" marker-end="url(#ara)"/>
+          <line x1="388" y1="56" x2="408" y2="76" stroke="var(--accent)" stroke-width="2"/>
+          <line x1="408" y1="56" x2="388" y2="76" stroke="var(--accent)" stroke-width="2"/>
+          <text x="398" y="42" class="dlabel" text-anchor="middle" fill="var(--accent)">raw screenshot never crosses</text>
+
+          <rect x="16" y="150" width="104" height="60" rx="3" class="dbox"/>
+          <text x="68" y="177" class="dlabel" text-anchor="middle">Screenshot of</text>
+          <text x="68" y="193" class="dlabel" text-anchor="middle">the real app</text>
+
+          <rect x="160" y="100" width="400" height="200" rx="4" class="dbound"/>
+          <text x="360" y="124" class="dcap" text-anchor="middle" opacity=".62">THE DESIGNER&#8217;S BROWSER</text>
+
+          <line x1="124" y1="180" x2="172" y2="180" class="dedge" marker-end="url(#ar)"/>
+
+          <rect x="180" y="150" width="112" height="60" rx="3" class="dbox"/>
+          <text x="236" y="177" class="dlabel" text-anchor="middle">Text found</text>
+          <text x="236" y="193" class="dlabel" text-anchor="middle">locally</text>
+
+          <rect x="304" y="150" width="112" height="60" rx="3" class="dbox"/>
+          <text x="360" y="177" class="dlabel" text-anchor="middle">Rules redact</text>
+          <text x="360" y="193" class="dlabel" text-anchor="middle">what matches</text>
+
+          <rect x="428" y="150" width="112" height="60" rx="3" class="dbox"/>
+          <text x="484" y="177" class="dlabel" text-anchor="middle">A person</text>
+          <text x="484" y="193" class="dlabel" text-anchor="middle">approves it</text>
+
+          <line x1="294" y1="180" x2="302" y2="180" class="dedge" marker-end="url(#ar)"/>
+          <line x1="418" y1="180" x2="426" y2="180" class="dedge" marker-end="url(#ar)"/>
+
+          <text x="360" y="266" class="dsmall" text-anchor="middle">held in memory, never written to a server</text>
+
+          <line x1="566" y1="180" x2="670" y2="180" class="dedge" stroke="var(--accent)" opacity="1" marker-end="url(#ara)"/>
+          <text x="618" y="164" class="dlabel" text-anchor="middle" fill="var(--accent)">approved</text>
+          <text x="618" y="204" class="dlabel" text-anchor="middle" fill="var(--accent)">image only</text>
+
+          <rect x="676" y="150" width="104" height="60" rx="3" class="dbox"/>
+          <text x="728" y="185" class="dlabel" text-anchor="middle">Our servers</text>
+        </svg>
+        <figcaption>The whole design is the position of the boundary. Recognition, redaction
+          and approval all happen on the designer's machine, so the only image that ever
+          reaches us is one a human has cleared.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:2rem">
+  <div class="row">
+    <p class="tag">Why the boundary<br>is the design</p>
+    <div class="body">
+      <p>You can build an excellent redaction tool that runs on your own servers, and it does
+        not solve this problem, because for these customers the violation already happened at
+        upload. Moving the work across the boundary is the entire idea. Everything else is
+        implementation.</p>
+      <p>It unblocked customers who had been prevented by their own data policies from adopting
+        the screenshot workflow at all. It landed the same year I served as one of two internal
+        leads on the company's first SOC 2 Type II certification, owning the platform and
+        product security architecture, which is the other half of the same story: making an
+        enterprise product that a regulated buyer's security review can actually clear.</p>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<section>
+  <div class="row">
+    <p class="tag">Also</p>
+    <div class="body wide">
+      <div class="also">
+        <article>
+          <h3>CBRE Asset Intel</h3>
+          <p>Technical and design lead, and the client relationship, for a React Native field
+            application for commercial real estate asset management. Offline first, because
+            the people using it are in basements and plant rooms. QR tagging, GPS proximity
+            search, and localization across thirteen languages.</p>
+        </article>
+        <article>
+          <h3>John Zink Hamworthy, manufacturing execution</h3>
+          <p>Product lead and architect for a system digitizing shop floor operations across
+            three operator personas. I defined the product, designed the thirty four table
+            domain model, and wrote seventy of the hundred and six user stories. It went to
+            production through a client reorganization that moved their IT into a parent
+            company mid project.</p>
+        </article>
+        <article>
+          <h3>Lesson versioning</h3>
+          <p>Published lessons stay editable. Version states, revert to any prior version, and
+            a change log filterable by contributor and step. The hard part is that the content
+            is live to learners at the same time someone is editing it.</p>
+        </article>
+        <article>
+          <h3>Translation that admits what it is</h3>
+          <p>I led the multilingual work end to end. AI translation with side by side review
+            and language specific screen overrides, and an asterisk convention marking machine
+            output still awaiting human checking, including a footnote the learner sees when a
+            translation has not been reviewed yet. Telling the learner seemed better than
+            hoping they would not notice.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<footer>
+  <div class="row">
+    <p class="tag">Contact</p>
+    <div class="body wide">
+      <p>Open to design engineering and product leadership roles, and to contract work.<br>
+        <a href="mailto:benbishop80@gmail.com">benbishop80@gmail.com</a></p>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+</body>
+</html>
